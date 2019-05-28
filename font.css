@@ -1,0 +1,8 @@
+@font-face {
+    font-family: GameOfThrones;
+    src: url("source/fonts/Game of Thrones.ttf")
+}
+@font-face{
+    font-family: EB_Garamond;
+    src: url("source/fonts/EBGaramond-Regular.ttf");
+}

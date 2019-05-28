@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Game of Thrones</title>
+        <meta name="description" content="Game of Thrones registration form">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="font.css">
+    </head>
+    <body>
+        <main>
+        <section class="left-section"></section>
+        <!-- <section class="right-section">
+            <div class="reg_wrapper">
+                <h1>Game of Thrones</h1>
+                <form action="#">
+                    <div class="reg_form">
+                        <label for="email"><b>Enter your email</b></label>
+                        <input type="email" placeholder="arya@westeros.com" name="email" required>
+                        <hr>
+                        <label for="psw"><b>Choose secure password</b></label>
+                        <div class="tips_text">must be atleast 8 characters</div>
+                        <input type="password" placeholder="password" name="psw" required>
+                        <hr>
+                        <label class="container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                        </label>
+                        <div class="rememberMe">Remember me</div>
+                        <button class="submit" type="submit">Sign Up</button>
+                    </div>
+                  </form>
+            </div>
+        </section> -->
+        <section class="right-section">
+            <div class="reg_wrapper">
+                <h1>Game of Thrones</h1>
+                    <div class="success_header">You've successfully joined the game.<br>Tell us more about yourself.</div>
+                    <form action="#">
+                        <div class="reg_form">
+                            <label for="name"><b>Who are you?</b></label>
+                            <div class="tips_text">Alpha-numeric username</div>
+                            <input type="text" placeholder="arya" name="name" required>
+                            <hr>
+                            <label for="house"><b>Your Great House</b></label>
+                                <input type="text" placeholder="Select your House" list="house">
+                                <datalist id="house">
+                                  <option value="Stark">
+                                  <option value="Lannister">
+                                  <option value="Greyjoy">
+                                  <option value="Arryn">
+                                  <option value="Baratheon">
+                                  <option value="Tully">
+                                  <option value="Tyrell">
+                                </datalist> 
+                            <hr>
+                            <label for="pref_hobby">Your preferences, hobbies, wishes, etc.</label>
+                            <input type="text" placeholder="I have long TOKILL list..." name="pref_hobby">
+                            <hr>
+                            <button class="submit" type="submit">Save</button>
+                        </div>
+                      </form>
+            </div>
+        </section>
+        </main>
+    </body>
+</html>
