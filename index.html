@@ -1,18 +1,20 @@
 <!DOCTYPE html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Game of Thrones</title>
-        <meta name="description" content="Game of Thrones registration form">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="font.css">
-    </head>
-    <body>
-        <main>
-        <section class="left-section"></section>
-        <!-- <section class="right-section">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Game of Thrones</title>
+  <meta name="description" content="Game of Thrones registration form">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="font.css">
+</head>
+
+<body>
+  <main>
+    <section class="left-section"></section>
+    <!-- <section class="right-section">
             <div class="reg_wrapper">
                 <h1>Game of Thrones</h1>
                 <form action="#">
@@ -34,36 +36,37 @@
                   </form>
             </div>
         </section> -->
-        <section class="right-section">
-            <div class="reg_wrapper">
-                <h1>Game of Thrones</h1>
-                    <div class="success_header">You've successfully joined the game.<br>Tell us more about yourself.</div>
-                    <form action="#">
-                        <div class="reg_form">
-                            <label for="name"><b>Who are you?</b></label>
-                            <div class="tips_text">Alpha-numeric username</div>
-                            <input type="text" placeholder="arya" name="name" required>
-                            <hr>
-                            <label for="house"><b>Your Great House</b></label>
-                                <input type="text" placeholder="Select your House" list="house">
-                                <datalist id="house">
-                                  <option value="Stark">
-                                  <option value="Lannister">
-                                  <option value="Greyjoy">
-                                  <option value="Arryn">
-                                  <option value="Baratheon">
-                                  <option value="Tully">
-                                  <option value="Tyrell">
-                                </datalist> 
-                            <hr>
-                            <label for="pref_hobby">Your preferences, hobbies, wishes, etc.</label>
-                            <input type="text" placeholder="I have long TOKILL list..." name="pref_hobby">
-                            <hr>
-                            <button class="submit" type="submit">Save</button>
-                        </div>
-                      </form>
-            </div>
-        </section>
-        </main>
-    </body>
+    <section class="right-section">
+      <div class="reg_wrapper">
+        <h1>Game of Thrones</h1>
+        <div class="header_tell_us">You've successfully joined the game.<br>Tell us more about yourself.</div>
+        <form action="#">
+          <div class="reg_form">
+            <label for="name"><b>Who are you?</b></label>
+            <div class="tips_text">Alpha-numeric username</div>
+            <input type="text" id="arya" placeholder="arya" name="name" required>
+            <hr>
+            <label for="house"><b>Your Great House</b></label>
+            <input type="text" placeholder="Select House" list="house">
+            <datalist id="house">
+              <option value="Stark">
+              <option value="Lannister">
+              <option value="Greyjoy">
+              <option value="Arryn">
+              <option value="Baratheon">
+              <option value="Tully">
+              <option value="Tyrell">
+            </datalist>
+            <hr>
+            <label for="pref_hobby">Your preferences, hobbies, wishes, etc.</label>
+            <input type="text" placeholder="I have long TOKILL list..." name="pref_hobby">
+            <hr>
+            <button class="submit" type="submit">Save</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+</body>
+
 </html>
