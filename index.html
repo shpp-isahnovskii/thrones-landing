@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Game of Thrones</title>
   <meta name="description" content="Game of Thrones registration form">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="font.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -19,13 +18,11 @@
                 <h1>Game of Thrones</h1>
                 <form action="#">
                     <div class="reg_form">
-                        <label for="email"><b>Enter your email</b></label>
+                        <label for="email">Enter your email</label>
                         <input type="email" placeholder="arya@westeros.com" name="email" required>
-                        <hr>
-                        <label for="psw"><b>Choose secure password</b></label>
+                        <label for="psw">Choose secure password</label>
                         <div class="tips_text">must be atleast 8 characters</div>
                         <input type="password" placeholder="password" name="psw" required>
-                        <hr>
                         <label class="container">
                         <input type="checkbox">
                         <span class="checkmark"></span>
@@ -45,7 +42,6 @@
             <label for="name">Who are you?</label>
             <div class="tips_text">Alpha-numeric username</div>
             <input type="text" id="arya" placeholder="arya" name="name" required>
-            <hr>
             <label for="house">Your Great House</label>
             <input type="text" placeholder="Select House" list="house">
             <datalist id="house">
@@ -57,10 +53,8 @@
               <option value="Tully">
               <option value="Tyrell">
             </datalist>
-            <hr>
             <label for="pref_hobby">Your preferences, hobbies, wishes, etc.</label>
             <input type="text" placeholder="I have long TOKILL list..." name="pref_hobby">
-            <hr>
             <button class="submit" type="submit">Save</button>
           </div>
         </form>
