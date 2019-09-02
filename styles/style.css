@@ -21,7 +21,7 @@ main {
   flex-grow: 1;
   max-width: 50%;
   align-self: stretch;
-  background-image: url("source/images/maxresdefault.jpg");
+  background-image: url("../source/images/maxresdefault.jpg");
   background-size: cover;
   background-position: center;
 }
@@ -33,7 +33,7 @@ main {
   max-width: 50%;
   align-self: stretch;
   font-family: "EB_Garamond";
-  background-image: url("source/images/darknoise.png");
+  background-image: url("../source/images/darknoise.png");
 }
 
 .right-section h1 {
@@ -47,10 +47,10 @@ main {
   max-width: 500px;
   margin: 60px auto 0 auto;
 }
-.reg_form * {
+.regForm * {
   font-size: 20px;
 }
-.reg_form .rememberMe {
+.regForm .rememberMe {
   padding-left: 30px;
 }
 
@@ -187,4 +187,11 @@ input[list="house"] {
 }
 input[name="pref_hobby"] {
   padding: 20px 0;
+}
+#alertPass{
+  height: 8px;
+}
+
+.formTwo {
+  display: none;
 }
