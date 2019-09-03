@@ -1,22 +1,23 @@
 
-function addListeners(id) {
-    const field = document.getElementById(id);
-    field.addEventListener('blur', () => { //first on blur
+//add listener on blur
+const field = document.getElementById('regPass');
+field.addEventListener('blur', () => { //first on blur
 
-        //checkPass(field.value);
+    checkPass(field.value);
 
-        field.addEventListener('input', () => { /*checkPass(field.value)*/ }); //rest valid checks only on some changes 
+    field.addEventListener('input', () => { checkPass(field.value) }); //rest valid checks only on some changes 
 
-    }, {once: true}); //once mean what first listener will be used only once;
-    }
+}, {once: true}); //once mean what first listener will be used only once;
+
+
 
 // Submit button validation checker
 let form = document.querySelector('.regForm');
 form.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    let pass = form.querySelector('#regPass');
-    if(checkPass(pass.value)) {
+    let pass = form.querySelector('#regPass').value;
+    if(checkPass(pass)) {
         gotToNextForm();
     }
 });
@@ -43,10 +44,6 @@ function checkPass(password) {
 }
 
 function gotToNextForm() {
-    switchDisplays();
-}
-
-function switchDisplays() {
     document.getElementById('formOne').style.display = 'none';
     document.getElementById('formTwo').style.display = 'block';
 }

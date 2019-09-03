@@ -192,6 +192,6 @@ input[name="pref_hobby"] {
   height: 8px;
 }
 
-.formTwo {
+#formTwo {
   display: none;
 }
