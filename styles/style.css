@@ -83,7 +83,7 @@ input[list="house"]:placeholder-shown {
 
 label {
   display: block;
-  margin-top: 35px;
+  margin-top: 28px;
 }
 .tips_text {
   font-family: "OpenSans";
@@ -162,7 +162,7 @@ label {
   border: none;
   border-radius: 2px;
   color: #fef8eb;
-  margin: 60px 0;
+  margin: 50px 0;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
