@@ -9,16 +9,18 @@ body {
 }
 main {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: 100vh;
 }
-
-.left-section {
+.left-section, .right-section {
+  display: block;
   flex-grow: 1;
   max-width: 50%;
+  height: 100vh;
+}
+.left-section {
   align-self: stretch;
   background-color: #000;
   background-image: url("../source/images/maxresdefault.jpg");
@@ -33,15 +35,13 @@ main {
 
 .right-section {
   font-size: 14px;
-  flex-grow: 1;
-  max-width: 50%;
   align-self: stretch;
-  font-family: "EB_Garamond";
+  font-family: "EB_Garamond", serif;
   background-image: url("../source/images/darknoise.png");
 }
 
 .right-section h1 {
-  font-family: "GameOfThrones";
+  font-family: "GameOfThrones", serif;
   text-align: center;
   letter-spacing: 0.1em;
   font-size: 30px;
@@ -73,10 +73,19 @@ select {
   border: none;
   margin: 0;
   padding: 10px 0;
-  font-family: "OpenSans";
+  font-family: "OpenSans", sans-serif;
   font-size: 16px;
   border-bottom: 2px solid #d3bb89;
+  transition: all 1s;
 }
+
+input:invalid:not(:focus):not(:placeholder-shown) {
+  border-bottom: 2px solid tomato;
+}
+input:valid:not(:focus):not(:placeholder-shown) {
+  border-bottom: 2px solid lightgreen;
+}
+
 select {
   outline: none;
 }
@@ -98,7 +107,7 @@ label {
   margin-top: 28px;
 }
 .tips_text {
-  font-family: "OpenSans";
+  font-family: "OpenSans", sans-serif;
   color: #fef8eb;
   margin-bottom: 4px;
   font-size: 12px;
@@ -182,11 +191,11 @@ label {
   font-size: 20px;
   cursor: pointer;
   width: 100%;
-  font-family: "OpenSans";
+  font-family: "OpenSans", sans-serif;
 }
 
 .header_tell_us {
-  font-family: "OpenSans";
+  font-family: "OpenSans", sans-serif;
   border-left: 2px solid #d3bb89;
   padding-left: 18px;
   color: #fef8eb;
@@ -200,9 +209,7 @@ input[list="house"] {
 input[name="pref_hobby"] {
   padding: 20px 0;
 }
-#alertPass{
-  height: 8px;
-}
+
 .invisible {
   display: none;
 }
@@ -211,11 +218,18 @@ input[name="pref_hobby"] {
   max-width: 400px;
   margin: 100px auto 0 auto;
 }
-
-/*have problem with background autocomplete. So find little life-hack here: 
+/*have problem with background autocomplete. Have solution from here solution: 
+https://stackoverflow.com/questions/2781549/removing-input-background-colour-for-chrome-autocomplete*/
+/*Another life-hack is here: 
 https://webagility.com/posts/the-ultimate-list-of-hacks-for-chromes-forced-yellow-background-on-autocompleted-inputs*/
-input {
-  -webkit-transition-delay: 99999s;
-    /* -webkit-box-shadow: 0 0 0 100px rgb(0, 0, 0) inset;
-    -webkit-text-fill-color: white; */
+
+@-webkit-keyframes autofill {
+  to {
+      color: #fef8eb;
+      background: transparent;
+  }
+}
+input:-webkit-autofill {
+  -webkit-animation-name: autofill;
+  -webkit-animation-fill-mode: both;
 }

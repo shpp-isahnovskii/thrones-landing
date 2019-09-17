@@ -36,10 +36,9 @@ field.addEventListener('blur', () => { //first on blur
 let form = document.querySelector('.regForm');
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-
   let pass = form.querySelector('#regPass').value;
   if (checkPass(pass)) {
-    gotToNextForm();
+    //gotToNextForm();
   }
 });
 
@@ -48,7 +47,7 @@ form.addEventListener('submit', (event) => {
 //  */
 function checkPass(password) {
   let result = true;
-  let validation = [/([a-z]+)/, /[A-Z]+/, /[0-9]+/, /[!@#\$%\^&\*]+/, /(?=.{8,})/]; //all regExp list
+  let validation = [/([a-z]+)/, /[A-Z]+/, /\d+/, /[!@#\$%\^&\*]+/, /(?=.{8,})/]; //all regExp list
   let propositions = ['one little character', 'one big character', 'one number', 'one specific symbol: !@#$%^&*', '8 characters']; //list of tips for each validation case
 
   const alertText = document.getElementById('alertPass'); //our text field for changing
