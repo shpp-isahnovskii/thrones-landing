@@ -17,18 +17,22 @@ main {
 }
 
 .left-section {
-  background-color: #790df5;
   flex-grow: 1;
   max-width: 50%;
   align-self: stretch;
+  background-color: #000;
   background-image: url("../source/images/maxresdefault.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.owl-carousel {
   background-size: cover;
   background-position: center;
 }
 
 .right-section {
   font-size: 14px;
-  background-color: #b5ebf5;
   flex-grow: 1;
   max-width: 50%;
   align-self: stretch;
@@ -62,15 +66,23 @@ input {
 input[type="email"],
 input[type="password"],
 input[type="text"],
-input[list="house"] {
+input[list="house"],
+select {
   width: 100%;
-  background: none;
+  background: transparent;
   border: none;
   margin: 0;
   padding: 10px 0;
   font-family: "OpenSans";
   font-size: 16px;
   border-bottom: 2px solid #d3bb89;
+}
+select {
+  outline: none;
+}
+select option {
+  background: rgb(0, 0, 0);
+  color: #fef8eb;
 }
 
 /*borders for registration form :if hower - Set to 0*/
@@ -191,7 +203,19 @@ input[name="pref_hobby"] {
 #alertPass{
   height: 8px;
 }
-
-#formTwo {
+.invisible {
   display: none;
+}
+/* PS 3 owl carousel */
+.owl-carousel img {
+  max-width: 400px;
+  margin: 100px auto 0 auto;
+}
+
+/*have problem with background autocomplete. So find little life-hack here: 
+https://webagility.com/posts/the-ultimate-list-of-hacks-for-chromes-forced-yellow-background-on-autocompleted-inputs*/
+input {
+  -webkit-transition-delay: 99999s;
+    /* -webkit-box-shadow: 0 0 0 100px rgb(0, 0, 0) inset;
+    -webkit-text-fill-color: white; */
 }
