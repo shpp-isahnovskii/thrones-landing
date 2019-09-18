@@ -1,0 +1,1 @@
+# to use owl carousel for this PS task you need to download package: npm install --save owl.carousel
