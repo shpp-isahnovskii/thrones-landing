@@ -38,7 +38,7 @@ form.addEventListener('submit', (event) => {
   event.preventDefault();
   let pass = form.querySelector('#regPass').value;
   if (checkPass(pass)) {
-    //gotToNextForm();
+    gotToNextForm();
   }
 });
 

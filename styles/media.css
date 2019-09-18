@@ -5,4 +5,10 @@
   .left-section, .right-section {
     max-width: 100%;
   }
+  .owl-carousel img {
+    max-width: 30%;
+  }
+  #formTwo {
+    height: 50%;
+  }
 }
