@@ -1,0 +1,14 @@
+@media (max-width: 1040px) {
+  main {
+    flex-direction: column;
+  }
+  .left-section, .left-section-form2, .right-section {
+    max-width: 100%;
+  }
+  .owl-carousel img {
+    max-width: 30%;
+  }
+  #formTwo {
+    height: 50%;
+  }
+}
