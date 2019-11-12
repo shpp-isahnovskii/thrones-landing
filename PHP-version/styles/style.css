@@ -13,12 +13,12 @@ main {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  height: 100vh;
 }
 .left-section, .left-section-form2, .right-section {
   display: block;
   flex-grow: 1;
   max-width: 50%;
-  height: 100vh;
 }
 .left-section {
   align-self: stretch;
@@ -190,7 +190,7 @@ label {
   border: none;
   border-radius: 2px;
   color: #fef8eb;
-  margin: 50px 0;
+  margin: 50px 0 40px;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -253,4 +253,13 @@ table.users {
 table.users td{
   padding: 1rem;
   border: 1px solid white;
+}
+.error {
+  color: tomato;
+  font-size: 1.1rem;
+}
+
+td img {
+  width: 100px;
+  height: 100px;
 }

@@ -1,48 +1,83 @@
 <?php 
   session_start();
-
-  if(!isset($_POST['name'])
-  || !isset($_POST['house'])
-  || !isset($_POST['pref_hobby']) 
+  
+  if(!isset($_SESSION['post']['name'])
+  || !isset($_SESSION['post']['house'])
+  || !isset($_SESSION['post']['pref_hobby']) 
   || !isset($_SESSION['post']['email'])
   || !isset($_SESSION['post']['pass']) ) 
   {
+  //u konw nothing user unnamed
   header('Location: ./index.php');
   } else {
-    foreach ($_POST as $key => $value) {
-      if($key == 'submit') continue;
-      $_SESSION['post'][$key] = htmlspecialchars($value);
-    }
+   /*
+    * SESSION is full of date now. We can take name and create data json.
+    * Then we can push all data inside.
+    * */
+    add_new_user();
+    $users_array = jsons_to_array();
+    $users_table = load_html_table($users_array);
 
-    $json = write_json();
-    $users = load_users($json);
     unset($_SESSION['post']);
   }
 
-  function write_json() {
-    //get json
-    $file_path = './data/json.json';
-    $json_file = file_get_contents($file_path);
-    $json_file = json_decode($json_file, true);
-    
-    //prepare data
-    $user_data = $_SESSION['post'];
-    array_push($json_file, $user_data); //push new information to user data
 
-    $new_json_file = json_encode($json_file, true);
-    file_put_contents($file_path, $new_json_file);
+  function add_new_user() {
+    $file_name =& $_SESSION['post']['email']; //email as file name
+    $file_path = './data/'.$file_name.'.json';
+    $file_data = get_session_data();
+    file_put_contents($file_path, json_encode($file_data, true)); //add user like json file in some folder
+  }
 
-    return $json_file; //return not encoded but updated json
+  //Make an array and returns it. Skip first element (email).
+  function get_session_data() {
+    $result = [];
+    foreach ($_SESSION['post'] as $key => $value) {
+      if($key == 'email') continue;
+      $result[$key] = $value;
+    }
+    return $result;
+  }
+
+
+  /**
+   * Function:
+   * 1) scan dir
+   * 2) get data from all files add them to data_arr
+   * 3) add key => val for email to this array
+   * 4) return array of data
+   */
+  function jsons_to_array() {
+    $directory = './data/';
+    $files = array_diff( scandir($directory), array('..', '.') ); //exxample: https://www.php.net/manual/ru/function.scandir.php - first comment
+    $data_arr = [];
+
+    foreach ($files as $file) {
+      $file_name = basename($file, '.json');
+      $json_file = file_get_contents($directory.$file);
+      $json_file = json_decode($json_file, true);
+      $json_file['email'] = $file_name;
+
+      $data_arr[] = $json_file;
+    }
+    return $data_arr;
   }
 
   /**
    * get array of data and return it like a table
    */
-  function load_users($file) {
+  function load_html_table($file) {
     $table = "";
     $index = 1;
     foreach ($file as $key => $value) {
-      $table .= '<tr><td>'.$index.'</td><td>'.$value['name'].'</td><td>'.$value['house'].'</td><td>'.$value['pref_hobby'].'</td><td>'.$value['email'].'</td></tr>';
+      $table .= 
+      '<tr>
+        <td>'.$index.'</td>
+        <td>'.$value['name'].'</td>
+        <td><img src="./source/images/after-reg/'.$value['house'].'.png" alt="house img"></td>
+        <td>'.$value['pref_hobby'].'</td>
+        <td>'.$value['email'].'</td>
+      </tr>';
       $index++;
     }
     return $table;
@@ -68,12 +103,12 @@
             <tr>
               <th>id</th>
               <th>name</th>
-              <th>house(bugged)</th>
+              <th>house</th>
               <th>hobby</th>
               <th>email</th>
             </tr>
             <?php 
-            echo $users;
+            echo $users_table;
             ?>
           </table>
 

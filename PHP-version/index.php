@@ -1,40 +1,76 @@
 <?php
   session_start();
-  $email = '';
-  
-  if($_SERVER["REQUEST_METHOD"] == "POST") {
+  //Example of form-making: https://www.w3schools.com/php/php_form_complete.asp
+  $email_err = $pass_err = '';
+  $email = $pass = '';
 
-    $email = '*this email is already taked';
-    set_action();
-  }
-  function set_action() {
-    if( ( !empty($_POST['email']) && !empty($_POST['pass']) ) && !is_taked($_POST['email']) ) 
-    { //if ok
-      //write data to the session
-      foreach ($_POST as $key => $value) { // https://www.formget.com/multi-page-form-php/
-        if($key == 'submit') continue; //skip
-        $_SESSION['post'][$key] = htmlspecialchars($value);
-      }
-      header('Location: ./form2.php');
+  if($_SERVER["REQUEST_METHOD"] == "POST") { //request_method mean - submited once
+
+    //this vars contain data to validate 
+    $email = $_POST['email'];
+    $pass = $_POST['pass'];
+    //this vars contain errors to show. Here is to function: email and pass_checker - they return some stings.
+    $email_err = email_cheker($email);
+    $pass_err = pass_checker($pass);
+
+    if( $email_err === '' && $pass_err === '' ) { // '' = no errors
+      save_and_go('Location: ./form2.php');
     }
   }
+
   /**
-   * Check email in database.
-   * return true if found.
+   * Function has 3 filters: empty, valid, exist. 
+   * If all 3 passed return: ''.
    */
-  function is_taked($email) {
-    //get json
-    $file_path = './data/json.json';
-    $json_file = file_get_contents($file_path);
-    $json_file = json_decode($json_file, true);
-    //collect all emails
-    $data_emails = [];
-    foreach ($json_file as $key => $value) {
-      $data_emails[] = $value['email'];
+  function email_cheker($email) {
+    if( empty($email)  ) { // empty ? 
+      return '* email have empty value';
     }
-    //return needle from the haystack
-    return in_array($email, $data_emails);
+    if( !valid_file_name($email) || !filter_var($email, FILTER_VALIDATE_EMAIL) ) {// valid ?
+      return '* your email is not valid';
+    }
+    if ( is_taken($email) ) {// exist ?
+      return '* your email is already exist';
+    }
+      return '';
+  };
+
+  /**
+   * return true if input value can be a file name
+   */
+  function valid_file_name($email) {
+    $regexp = '/^[0-9a-zA-Z_\-.@]+$/';
+    return preg_match($regexp, $email);
   }
+
+  /** Check email in database, return true if found.
+   * @param email string in the email format
+   */
+  function is_taken($email) {
+    $file_path = './data/'.$email.'.json';
+    return file_exists($file_path) ? true : false; 
+  }
+
+  /**
+   * Pass checker. Ok.. they said it need be only 8 char thats all
+   */
+  function pass_checker($pass) {
+    $regexp = '/([a-zA-Z!@#\$%\^&\*\d]){8,}/';   //(little, big, symbols, digits) >= 8
+    return preg_match($regexp, $pass) ? '' : '* password must be 8 or more characters length';
+  }
+
+  /**
+   * Write data to the session for the next form
+   */
+  function save_and_go($page_to_go) {
+    //write data to the session.  
+    foreach ($_POST as $key => $value) { // https://www.formget.com/multi-page-form-php/
+      if($key == 'submit') continue; //skip
+      $_SESSION['post'][$key] = htmlspecialchars($value);
+    }
+    header($page_to_go);
+  }
+
 
 ?>
 <!DOCTYPE html>
@@ -49,7 +85,7 @@
   <link rel="stylesheet" type="text/css" href="./styles/index.css">
 </head>
 
-<body onload="registrationPart1()">
+<body>
   <main>
     <section class="left-section">
     </section>
@@ -59,10 +95,12 @@
 
         <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]) ?>" class="regForm loginForm" method="post" autocomplete="off">
           <label for="regEmail">Enter your email</label>
-          <input type="email" placeholder="arya@westeros.com" name="email" id="regEmail" require><?='<span style = "color:tomato">'.$email.'</span>'; ?>
+          <input type="text" placeholder="arya@westeros.com" name="email" id="regEmail" value ="<?php echo $email ?>">
+          <span class ="error"><?php echo $email_err; ?></span>
           <label for="regPass">Choose secure password</label>
           <div class="tips_text" id="alertPass">must be atleast 8 characters</div>
-          <input type="password" placeholder="password" name="pass" id="regPass" require>
+          <input type="password" placeholder="password" name="pass" id="regPass" value ="<?php echo $pass ?>">
+          <span class ="error"><?php echo $pass_err; ?></span>
           <label class="container">
             <input type="checkbox" name="remember-me">
             <span class="checkmark"></span>
@@ -72,8 +110,5 @@
         </form>
       </div>
   </main>
-<script src="./node_modules/jquery/dist/jquery.min.js"></script>
-<script src="./script/script.js" type="text/javascript"></script>
 </body>
-
 </html>
